@@ -1,0 +1,13 @@
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.exe
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.deps.json
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.runtimeconfig.json
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.runtimeconfig.dev.json
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.dll
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\bin\Debug\netcoreapp3.1\TextAdventureTwo.pdb
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.csproj.AssemblyReference.cache
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.AssemblyInfoInputs.cache
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.AssemblyInfo.cs
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.csproj.CoreCompileInputs.cache
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.dll
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.pdb
+C:\Users\Second-Desktop\repos\TextAdventureTwo\TextAdventureTwo\obj\Debug\netcoreapp3.1\TextAdventureTwo.genruntimeconfig.cache
