@@ -5,12 +5,31 @@ using System.Linq;
 
 namespace TextAdventureTwo
 {
-    class Messages
+    static class Messages
     {
-   
+
+        public static Dictionary<string, string[]> General = new Dictionary<string, string[]>
+        { 
+            { "Logo", new string[] 
+            {
+            "   .-.                       .-.                           ",
+            "  (_) )-.              .'   (_) )-.             .-.        ",
+            "    .:   \\   .-.  .-..'       .:   \\  .-.       `-' . ,';. ",
+            "   .::.   ).;.-' :   ;       .::.   );   :     ;'   ;;  ;; ",
+            " .-:. `:-'  `:::'`:::'`.   .-:. `:-' `:::'-'_.;:._.';  ;;  ",
+            "(_/     `:._.             (_/     `:._.            ;    `. ", ""
+            } },
+
+            { "Opening", new string[]
+            {
+                "","Welcome to my Text Adventure Game!", "", "Created by Daniel Aguirre.", "Press any key to continue"
+            } }
 
 
-        public static Dictionary<string, string[]> Main = new Dictionary<string, string[]>
+        };
+
+
+        public static Dictionary<string, string[]> TestingMessages = new Dictionary<string, string[]>
         {
             {"Opening", new string[] {
                 "This is the first message for the Screen.", "",
@@ -28,12 +47,15 @@ namespace TextAdventureTwo
             "2) Option Two ",
             "3) Option Three ",
             "4) Option Four",
+            "5) Option Five",
             "", "Invalid Entries Not Allowed."} },
 
 
             {"TestingClearThenConfirmInput", new string[] {
                 "This is asking for my input", "", "Then it will confirm it with a yes/no added."} },
         };
+
+
 
     }
 }

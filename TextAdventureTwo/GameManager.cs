@@ -8,16 +8,24 @@ namespace TextAdventureTwo
 {
     public static class GameManager
     {
-       
-        public static void StartApplication()
+
+
+
+        public static void StartGame()
+        {
+            Prompter.StartingScreen();
+
+        }
+
+        public static void TestScreenClass()
         {
             // Print the first opening message and wait for input to continue.
-            Screen.ClearThenPrint(Messages.Main["Opening"]);
+            Screen.ClearThenPrint(Messages.TestingMessages["Opening"]);
             // Set a checkpoint to return to.
             Screen.SetCheckpoint();
             Console.ReadKey();
 
-            int entry = Screen.ClearThenPrintOptionList(Messages.Main["ClearThenPrintOptionList"]);
+            int entry = Screen.ClearThenPrintOptionList(Messages.TestingMessages["ClearThenPrintOptionList"]);
             Screen.ReprintWith(new string[] { "", $"You clicked {entry}", "" });
             Console.ReadKey();
 

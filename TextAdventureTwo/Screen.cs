@@ -9,17 +9,36 @@ namespace TextAdventureTwo
     class Screen
     {
         // number of empty rows to place at the top of the screen for spacing.
-        static int TopSpacing { get; set; } = 2;
+        static int DefaultTopSpacing = 2;
+        static int TopSpacing { get; set; }
         static List<StringBuilder> Checkpoint;
+        public static int RowCount { get => ScreenRows.Count(); }
 
         // List of StringBuilders used to create the screen.
         static List<StringBuilder> ScreenRows;
 
         static Screen()
         {
+            TopSpacing = DefaultTopSpacing;
             ScreenRows = new List<StringBuilder>();
             Checkpoint = new List<StringBuilder>();
         }
+
+        public static void ResetTopSpacing()
+        {
+            SetTopSpacing(DefaultTopSpacing);
+        }
+
+        public static void SetTopSpacing(int newSpacingHeight)
+        {
+            TopSpacing = newSpacingHeight;
+        }
+
+        public static int GetTopSpacing()
+        {
+            return TopSpacing;
+        }
+
 
         /// <summary>
         /// Return a string array representing the current contents of the screen. You can return to this checkpoint by calling ClearThenPrint(string[] returned)
@@ -238,7 +257,6 @@ namespace TextAdventureTwo
 
         #region Internal Methods for Printing Screen.
 
-
         /// <summary>
         /// Helper for PrintOptionList() methods to validate that the entry received is a number between 1 and maxNumber
         /// </summary>
@@ -267,14 +285,12 @@ namespace TextAdventureTwo
             return result;
         }
 
-
         /// <summary>
         /// Clears console and then prints all ScreenRows to the console. the provided inputRequestMessage will be printed below the last newMessage line, with a space between the two.
         /// </summary>
         /// <param name="inputRequesetMessage"></param>
         static void PrintScreen(string inputRequesetMessage)
         {
-            Console.Clear();
             for (int i = 0; i < ScreenRows.Count; i++)
             {
                 // if it's the last cycle of string rows.
@@ -366,20 +382,6 @@ namespace TextAdventureTwo
         #endregion
 
         //TODO: Move to a stringEditor class
-
-        /// <summary>
-        /// Return the provided string with padding to the left to center it horiziontally.
-        /// </summary>
-        /// <param name="textToCenter"></param>
-        /// <returns></returns>
-        static string PadToCenter(string textToCenter)
-        {
-            if (textToCenter == null)
-            {
-                return "";
-            }
-            return textToCenter.PadLeft((int)MathF.Round((Console.WindowWidth / 2) + (textToCenter.Length / 2)));
-        }
 
 
     }
