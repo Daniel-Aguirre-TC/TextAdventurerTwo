@@ -74,7 +74,7 @@ namespace TextAdventureTwo
         /// <returns></returns>
         public static bool ReprintWithYesNoQ(string question)
         {
-            ReprintWith(question, "Enter Yes/No: ");
+            ReprintWith(question, Prompter.PadToCenter("Enter Yes/No: "));
             return new Regex(@"^y").IsMatch(Console.ReadLine().ToLower()) ? true : false;
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace TextAdventureTwo
         /// <returns></returns>
         public static bool ReprintWithYesNoQ(string[] question)
         {
-            ReprintWith(question, "Enter Yes/No: ");
+            ReprintWith(Prompter.PadToCenter(question), Prompter.PadToCenter("Enter Yes/No: "));
             return new Regex(@"^y").IsMatch(Console.ReadLine().ToLower()) ? true : false;
         }
 
@@ -102,7 +102,8 @@ namespace TextAdventureTwo
             {
                 ClearThenPrint(newMessage, inputRequestMessage);
                 input = ConvertIfEnter(Console.ReadLine());
-                inputconfirmed = (ReprintWithYesNoQ(new string[] { $"You entered: {input}.", "Is this correct? " }));           
+                Console.Clear();
+                inputconfirmed = ReprintWithYesNoQ(new string[] { $"You entered: {input}.", "Is this correct? " });           
             }
             return input;
         }
@@ -115,20 +116,52 @@ namespace TextAdventureTwo
         /// <returns></returns>
         public static string ReprintThenConfirmInput(string newMessage, string inputRequestMessage)
         {
-            //Set checkpoint to before message is added to screen.
-            var tempScreenCheckpoint = ScreenRows.Count();
+            //Set checkpoint to before message is added to screen
+            var tempScreenCheckpoint = GetTempCheckpoint();
             bool inputconfirmed = false;
             string input = string.Empty;
             // cycle until input is confirmed
             while (!inputconfirmed)
             {
+                ClearRows();
+                AddToRows(tempScreenCheckpoint);
                 ReprintWith(newMessage, inputRequestMessage);
                 input = ConvertIfEnter(Console.ReadLine());
+                Console.Clear();
                 inputconfirmed = ReprintWithYesNoQ(new string[] { "", $"You entered: {input}.", "Is this correct? ", "" });
-                RemoveLastRows(ScreenRows.Count() - tempScreenCheckpoint);
+ 
             }
             return input;
         }
+
+        /// <summary>
+        /// Cycle through a message that is displayed below the current screen until the user confirms their input. baseMessage reflects all strings above where the user types. inputRequestMessage reflects the text that appears directly in front of where the user types their response.
+        /// </summary>
+        /// <param name="newMessage"></param>
+        /// <param name="inputRequestMessage"></param>
+        /// <returns></returns>
+        public static string ReprintThenConfirmInput(string[] newMessage, string inputRequestMessage)
+        {
+            //Set checkpoint to before message is added to screen.
+            var tempScreenCheckpoint = GetTempCheckpoint();
+            bool inputconfirmed = false;
+            string input = string.Empty;
+            // cycle until input is confirmed
+            while (!inputconfirmed)
+            {
+                ClearRows();
+                Console.Clear();
+                AddToRows(tempScreenCheckpoint);
+                ReprintWith(newMessage, inputRequestMessage);
+                input = ConvertIfEnter(Console.ReadLine());
+                Console.Clear();
+                inputconfirmed = ReprintWithYesNoQ(new string[] { "", $"You entered: {input}.","", "Is this correct? ", "" });
+                ClearRows();
+            }
+            return input;
+        }
+
+
 
 
         /// <summary>
@@ -184,7 +217,7 @@ namespace TextAdventureTwo
         public static void ClearThenPrint(string newMessage)
         {
             ClearRows();
-            AddToScreen(newMessage);
+            AddToRows(newMessage);
             PrintScreen();
         }
 
@@ -195,7 +228,7 @@ namespace TextAdventureTwo
         public static void ClearThenPrint(string[] newMessage)
         {
             ClearRows();
-            AddToScreen(newMessage);
+            AddToRows(newMessage);
             PrintScreen();
         }
 
@@ -206,7 +239,7 @@ namespace TextAdventureTwo
         public static void ClearThenPrint(string[] newMessage, string inputRequestMessage)
         {
             ClearRows();
-            AddToScreen(newMessage);
+            AddToRows(newMessage);
             PrintScreen(inputRequestMessage);
         }
 
@@ -217,7 +250,7 @@ namespace TextAdventureTwo
         /// <param name="requestingInput"></param>
         public static void ReprintWith(string newMessage, string inputRequestMessage)
         {
-            AddToScreen(newMessage);
+            AddToRows(newMessage);
             PrintScreen(inputRequestMessage);
         }
 
@@ -228,7 +261,7 @@ namespace TextAdventureTwo
         /// <param name="requestingInput"></param>
         public static void ReprintWith(string newMessage)
         {
-            AddToScreen(newMessage);
+            AddToRows(newMessage);
             PrintScreen();
         }
 
@@ -239,7 +272,7 @@ namespace TextAdventureTwo
         /// <param name="requestingInput"></param>
         public static void ReprintWith(string[] newMessages, string inputRequestMessage)
         {
-            AddToScreen(newMessages);
+            AddToRows(newMessages);
             PrintScreen(inputRequestMessage);
         }
 
@@ -249,7 +282,7 @@ namespace TextAdventureTwo
         /// <param name="newMessages"></param>
         public static void ReprintWith(string[] newMessages)
         {
-            AddToScreen(newMessages);
+            AddToRows(newMessages);
             PrintScreen();
         }
 
@@ -291,6 +324,7 @@ namespace TextAdventureTwo
         /// <param name="inputRequesetMessage"></param>
         static void PrintScreen(string inputRequesetMessage)
         {
+            Console.Clear();
             for (int i = 0; i < ScreenRows.Count; i++)
             {
                 // if it's the last cycle of string rows.
@@ -326,7 +360,7 @@ namespace TextAdventureTwo
         /// Add the provided string to the list of ScreenRows
         /// </summary>
         /// <param name="message"></param>
-        static void AddToScreen(string message)
+        public static void AddToRows(string message)
         {
             ScreenRows.Add(new StringBuilder(message));
         }
@@ -335,11 +369,11 @@ namespace TextAdventureTwo
         /// Add the provided array of messages to the ScreenRows
         /// </summary>
         /// <param name="message"></param>
-        static void AddToScreen(string[] message)
+        public static void AddToRows(string[] message)
         {
             foreach (var item in message)
             {
-                AddToScreen(item);
+                AddToRows(item);
             }
         }
 
@@ -355,10 +389,10 @@ namespace TextAdventureTwo
         /// <summary>
         /// Clear the rows on the screen and then add rows for TopSpacing
         /// </summary>
-        static void ClearRows()
+        public static void ClearRows()
         {
             ScreenRows.Clear();
-            AddToScreen(new string[TopSpacing]);
+            AddToRows(new string[TopSpacing]);
         }
 
         /// <summary>
