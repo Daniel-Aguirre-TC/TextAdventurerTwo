@@ -11,6 +11,7 @@ namespace TextAdventureTwo
     static class Prompter
     {
 
+
         public static void StartingScreen()
         {
             Console.CursorVisible = false;
@@ -21,7 +22,6 @@ namespace TextAdventureTwo
             Screen.ClearThenPrint(PadToCenter(Messages.Main["Intro"]));
             Console.ReadKey();
         }
-
         public static int SelectClassScreen()
         {
             var confirmed = false;
@@ -92,14 +92,12 @@ namespace TextAdventureTwo
             // return selected index once confirmed.
             return selectedIndex;
         }
-
         public static string GetPlayerName()
         {
             Screen.ClearRows();
             CenterVertically(Messages.Main["NameRequest"].Length);
             return Screen.ClearThenConfirmInput(PadToCenter(Messages.Main["NameRequest"]), "                            What is your name, Hero ? ");
         }
-
         static void CenterVertically(int nextMessageLength)
         {
             PadCeiling(Console.WindowHeight / 2 - (nextMessageLength / 2));
