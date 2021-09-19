@@ -307,7 +307,15 @@ namespace TextAdventureTwo
                 "- Kashya the Captain of the Rogue Archers                           ",
                 "- Warriv the Caravan Traveler.                                      ",
 
-            } }
+            } },
+
+
+            {"Warriv", new string[]{
+
+                ""
+
+            } },
+
 
 
         };

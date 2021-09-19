@@ -9,7 +9,8 @@ namespace TextAdventureTwo.GameWorld
     {
 
         List<Location> Locations = new List<Location>();
-        List<Npc> Npcs = new List<Npc>();
+
+
 
         /// <summary>
         /// Create a new location and store it in World.Locations.
@@ -17,13 +18,14 @@ namespace TextAdventureTwo.GameWorld
         /// <param name="xCoordinate"></param>
         /// <param name="yCoordinate"></param>
         /// <param name="name"></param>
-        public void AddLocation(int xCoordinate, int yCoordinate, string name)
+        public void AddLocation(int xCoordinate, int yCoordinate, string name, string[] options)
         {
             Location location = new Location
             {
                 XCoord = xCoordinate,
                 YCoord = yCoordinate,
-                Name = name
+                Name = name,
+                Options = options
             };
             Locations.Add(location);
         }
@@ -34,13 +36,14 @@ namespace TextAdventureTwo.GameWorld
         /// <param name="xCoordinate"></param>
         /// <param name="yCoordinate"></param>
         /// <param name="name"></param>
-        public void AddLocation(int xCoordinate, int yCoordinate, string name, string[] entryMessage, List<Npc> npcs)
+        public void AddLocation(int xCoordinate, int yCoordinate, string name, string[] options, string[] entryMessage, List<Npc> npcs)
         {
             Location location = new Location
             {
                 XCoord = xCoordinate,
                 YCoord = yCoordinate,
                 Name = name,
+                Options = options,
                 EntryMessage = entryMessage,
                 Npcs = npcs
             };

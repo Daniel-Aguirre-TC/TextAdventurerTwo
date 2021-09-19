@@ -11,6 +11,7 @@ namespace TextAdventureTwo.GameWorld
         public int YCoord { get; set; }
         public string Name { get; set; }
         public string[] EntryMessage { get; set; }
+        public string[] Options { get; set; }
         public List<Npc> Npcs { get; set; }
 
 
