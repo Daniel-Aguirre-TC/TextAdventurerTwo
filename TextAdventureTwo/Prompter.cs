@@ -105,7 +105,6 @@ namespace TextAdventureTwo
         
         public static void PrintPage(Player player, int indexSelected)
         {
-            //TODO: track index and pass in to FormatPage
             Screen.SetTopSpacing(0);
             Screen.ClearRows();
             Screen.ClearThenPrint(MessageController.DisplayMessages(ConsoleUI.FormatPage(player, indexSelected)));

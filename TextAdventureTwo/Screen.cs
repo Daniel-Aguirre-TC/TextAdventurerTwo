@@ -415,8 +415,6 @@ namespace TextAdventureTwo
 
         #endregion
 
-        //TODO: Move to a stringEditor class
-
 
     }
 }

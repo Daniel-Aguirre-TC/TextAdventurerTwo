@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using TextAdventureTwo.GameMessages;
 using TextAdventureTwo.GamePlayer;
 using TextAdventureTwo.GameWorld;
@@ -36,7 +37,7 @@ namespace TextAdventureTwo
                 MessageController.AddMessage(CurrentLocation.EntryMessage);
             }
             ConsoleUI.ClearOptions();
-            ConsoleUI.AddOption(CurrentLocation.Options);
+            CurrentLocation.Options.ForEach(ConsoleUI.AddOption);
 
         }
 
@@ -49,10 +50,11 @@ namespace TextAdventureTwo
             MoveToLocation(0, 0);
             int optionIndex = 0;
 
-            while(StillPlaying)
+            while (StillPlaying)
             {
+                if (optionIndex >= ConsoleUI.Options.Count())
+                { optionIndex = ConsoleUI.Options.Count - 1; }
                 bool processInput = false;
-                string option = "";
                 Prompter.PrintPage(User, optionIndex);
                 switch (GetInput())
                 {
@@ -66,7 +68,6 @@ namespace TextAdventureTwo
 
                     case "enter":
                         processInput = true;
-                        option = ConsoleUI.Options[optionIndex];
                         break;
                     default:
                         break;
@@ -74,7 +75,7 @@ namespace TextAdventureTwo
 
                 if(processInput)
                 {
-
+                    ProcessInput(ConsoleUI.Options[optionIndex]);
                 }
 
 
@@ -83,15 +84,67 @@ namespace TextAdventureTwo
 
         static void ProcessInput(string optionSelected)
         {
-            switch (optionSelected.ToLower())
+            switch (optionSelected)
             {
-                case "talk to locals":
-                    //TODO: for each npc in current location I  need to add a ""
+                case "Talk to Locals":
+                    CurrentLocation.TalkToLocals();
+                    break;
+                case string word when word.StartsWith("Approach"):
+                    var npcApproached = NpcFactory.FindNpc(word.Replace("Approach ", ""));
+                    User.Current = $"Talking to {npcApproached.Name}";
+                    ConsoleUI.ClearOptions();
+                    ConsoleUI.AddOption(npcApproached.ApproachNpc());
+                    break;
+                case string word when word.StartsWith("Discuss "):
+                    var npcTalkingTo = NpcFactory.FindNpc(User.Current.Replace("Talking to ", ""));
+                    MessageController.ClearMessages();
+                    MessageController.AddMessage(npcTalkingTo.PullDialog(word.Replace("Discuss ", "")));
+                    break;
+                case "Return to Town":
+                    MoveToLocation(CurrentLocation.XCoord, CurrentLocation.YCoord);
+                    break;
+                case "Go to Stash":
+                    MessageController.AddMessage("                     Stash is not yet available                     ");
+                    break;
+                case string word when word.StartsWith("Travel "):
+                    switch (word.Replace("Travel ", ""))
+                    {
+                        case "East":
+                            MoveToLocation(CurrentLocation.XCoord + 1, CurrentLocation.YCoord);
+                            break;
+                        case "West":
+                            MoveToLocation(CurrentLocation.XCoord - 1, CurrentLocation.YCoord);
+                            break;
+                        case "North":
+                            MoveToLocation(CurrentLocation.XCoord, CurrentLocation.YCoord + 1);
+                            break;
+                        case "South":
+                            MoveToLocation(CurrentLocation.XCoord, CurrentLocation.YCoord - 1);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "Use Waypoint":
+                    //TODO: make AddMessage handle formatting messages to the right length.
+                    MessageController.AddMessage("                  You don't have any waypoints yet                  ");
+                    break;
+                case string word when word.StartsWith("Explore "):
+                    Explorer.Explore(CurrentLocation);
+
+                    //TODO: use currentLocation name to call an explore method that will do something random dependant upon the
+                    // name of the currentLocation we are at. Blood Moore for example will randomly either locate the den allowing
+                    // it to be added to the location options list, find cold plains which will also add it to the option list, or
+                    // fight a monster which will pick a random monster from the ACtOneMobs list and start fight method that will
+                    // have a loop for battle mechanics
+
+                    break;
 
                 default:
                     break;
             }
         }
+
 
         static string GetInput()
         {

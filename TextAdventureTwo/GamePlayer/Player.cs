@@ -56,8 +56,6 @@ namespace TextAdventureTwo.GamePlayer
         void SetClass()
         {
             var selection = Prompter.SelectClassScreen();
-            //TODO: Stats should be based on class, and possibly come from an IStatable that gives basic stats
-            //          Change PlayerClass from enum to class?
             switch (selection)
             {
                 case 0:

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using TextAdventureTwo.GamePlayer;
 
 namespace TextAdventureTwo.GameWorld
@@ -25,7 +26,7 @@ namespace TextAdventureTwo.GameWorld
                 XCoord = xCoordinate,
                 YCoord = yCoordinate,
                 Name = name,
-                Options = options
+                Options = options.ToList()
             };
             Locations.Add(location);
         }
@@ -43,7 +44,7 @@ namespace TextAdventureTwo.GameWorld
                 XCoord = xCoordinate,
                 YCoord = yCoordinate,
                 Name = name,
-                Options = options,
+                Options = options.ToList(),
                 EntryMessage = entryMessage,
                 Npcs = npcs
             };
@@ -55,7 +56,7 @@ namespace TextAdventureTwo.GameWorld
 
         public Location LocationAt(int xCoordinate, int yCoordinate)
         {
-            //TODO: Change this to a linq where statement? would return null if no matches?
+
             foreach (Location location in Locations)
             {
                 if (location.XCoord == xCoordinate && location.YCoord == yCoordinate)

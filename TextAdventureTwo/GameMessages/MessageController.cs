@@ -44,10 +44,14 @@ namespace TextAdventureTwo.GameMessages
 
         public static void AddMessage(string[] newMessage)
         {
-            newMessage.ToList().ForEach(DisplayedMessages.Add);
+            newMessage.ToList().ForEach(AddMessage);
         }
         public static void AddMessage(string newMessage)
         {
+            if (DisplayedMessages.Count >= 15)
+            {
+                DisplayedMessages.RemoveAt(0);
+            }
             DisplayedMessages.Add(newMessage);
         }
 

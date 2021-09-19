@@ -14,27 +14,27 @@ namespace TextAdventureTwo.GamePlayer
         static NpcFactory()
         {
 
-
             WarrivDialog = new Dictionary<string, string[]>()
             {
                 { "Greeting", new string[]{
 
-                    "      You approach Warriv the caravan traveler. You wonder if he    ",
-                    "would consider selling his blue and grey outfit to you, as you      ",
-                    "notice how comfortable and well suited for this environment it      ",
-                    "appears to be.                                                      ",
+                    "                                                                    ",
+                    "      As you approach Warriv the caravan traveler, you wonder if he ",
+                    "would consider selling his blue and grey outfit to you. It's hard   ",
+                    "not to notice how comfortable and well suited for this environment  ",
+                    "it appears to be.                                                   ",
 
                 } },
 
-                { "Intro", new string[]{
+                { "Introduction", new string[]{
 
                     "      Greetings, stranger. I'm not surprised to see your kind here. ",
                     "Many adventurers have traveled this way since the recent troubles   ",
-                    "began No doubt you've heard about the tragedy that befell Tristram. ",
+                    "began. No doubt you've heard about the tragedy that befell Tristram.",
                     "Some say that Diablo, the Lord of Terror, walks the world again.    ",
-                    "      I dont' know if I believe that, but a Dark Wanderer did travel",
-                    "this route few a weeks ago. He was headed east to the mountain pass ",
-                    "guarded by the rogue monastery. Maybe it's nothing, but evil seems  ",
+                    "      I don't know if I believe that, but a Dark Wanderer did travel",
+                    "this route a few weeks ago. He was headed East to the mountain pass ",
+                    "guarded by the Rogue Monastery. Maybe it's nothing, but evil seems  ",
                     "to have trailed in his wake. You see, shortly after the Wanderer    ",
                     "went through, the Monastery's Gates to the pass were closed and     ",
                     "strange creatures began ravaging the countryside.                   ",
@@ -47,12 +47,14 @@ namespace TextAdventureTwo.GamePlayer
                 } }
 
             };
-
             AllNpcs = new List<Npc>
             {
                 new Npc("Warriv", WarrivDialog )
+                //TODO: New Enemy : Npc
+                
             };
         }
+
 
         public static List<Npc> ActOneNpcs()
         {
@@ -62,7 +64,15 @@ namespace TextAdventureTwo.GamePlayer
             };
         }
 
-        static Npc FindNpc(string npcName)
+        public static List<Npc> BloodMoorMobs()
+        {
+            return new List<Npc>()
+            {
+                FindNpc("Warriv")
+            };
+        }
+
+        public static Npc FindNpc(string npcName)
         {
             foreach (var npc in AllNpcs)
             {

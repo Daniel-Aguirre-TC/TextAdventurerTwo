@@ -309,16 +309,21 @@ namespace TextAdventureTwo
 
             } },
 
+        };
 
-            {"Warriv", new string[]{
 
-                ""
+
+        public static Dictionary<string, string[]> BloodMoor = new Dictionary<string, string[]>
+        {
+            {"BloodMoorEntry", new string[]{
+                "      As you enter the Blood Moor you think to yourself, \"I shall   ",
+                "purge this land of the shadow. Beware, evil foul demons and beasts  ",
+                "who oppose me. For you will never see me coming.\"                   ",
 
             } },
 
-
-
         };
+
 
     }
 }
