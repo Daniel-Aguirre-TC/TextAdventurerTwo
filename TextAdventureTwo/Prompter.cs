@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using TextAdventureTwo.GamePlayer;
+using TextAdventureTwo.GameMessages;
 
 namespace TextAdventureTwo
 {
@@ -22,6 +24,7 @@ namespace TextAdventureTwo
             Screen.ClearThenPrint(PadToCenter(Messages.Main["Intro"]));
             Console.ReadKey();
         }
+        
         public static int SelectClassScreen()
         {
             var confirmed = false;
@@ -92,12 +95,22 @@ namespace TextAdventureTwo
             // return selected index once confirmed.
             return selectedIndex;
         }
+        
         public static string GetPlayerName()
         {
             Screen.ClearRows();
             CenterVertically(Messages.Main["NameRequest"].Length);
             return Screen.ClearThenConfirmInput(PadToCenter(Messages.Main["NameRequest"]), "                            What is your name, Hero ? ");
         }
+        
+        public static void PrintPage(Player player, int indexSelected)
+        {
+            //TODO: track index and pass in to FormatPage
+            Screen.SetTopSpacing(0);
+            Screen.ClearRows();
+            Screen.ClearThenPrint(MessageController.DisplayMessages(ConsoleUI.FormatPage(player, indexSelected)));
+        }
+        
         static void CenterVertically(int nextMessageLength)
         {
             PadCeiling(Console.WindowHeight / 2 - (nextMessageLength / 2));

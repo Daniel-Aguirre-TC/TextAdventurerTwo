@@ -293,5 +293,24 @@ namespace TextAdventureTwo
 
         };
 
+        public static Dictionary<string, string[]> RogueEncampment = new Dictionary<string, string[]>
+        {
+            {"RogueEncampmentEntry", new string[]{
+
+                "      You find yourself on the edges of Blood Moore, in the Rogue   ",
+                "Encampment. A resting place for the survivors from the attack on the",
+                "Rogue Monastary, Here you can find:                                 ",
+                "                                                                    ",
+                "- Charsi the Blacksmith                                             ",
+                "- Gheed the Merchant                                                ",
+                "- Akara the High Priestess                                          ",
+                "- Kashya the Captain of the Rogue Archers                           ",
+                "- Warriv the Caravan Traveler.                                      ",
+
+            } }
+
+
+        };
+
     }
 }

@@ -4,13 +4,16 @@ using System.Text;
 
 namespace TextAdventureTwo.GamePlayer
 {
-    class Player
+    public class Player
     {
 
         enum Classes { Amazon, Barbarian, Sorceress }
         
         public string Name { get; set; }
         Classes PlayerClass { get; set; }
+        public string Class { get => PlayerClass.ToString(); }
+        // reflects either " Current Location: 'xyz' " OR " Talking To: 'xyz' " OR " Battling: 'xyz' " 
+        public string Current { get; set; }
 
         #region Level
         public int Level { get; set; }
@@ -36,9 +39,16 @@ namespace TextAdventureTwo.GamePlayer
 
         public Player()
         {
+            Current = "Current Location/Action Not Yet Set";
+            // set resistances
+            FireResist = 0;
+            ColdResist = 0;
+            LightResist = 0;
+            PoisonResist = 0;
+            // ask player to select class then assign
             SetClass();
+            // ask play for their name
             Name = Prompter.GetPlayerName();
-
         }
 
 

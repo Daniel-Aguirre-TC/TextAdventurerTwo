@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TextAdventureTwo.GamePlayer;
 
 namespace TextAdventureTwo.GameWorld
 {
@@ -10,7 +11,8 @@ namespace TextAdventureTwo.GameWorld
         internal static World CreateWorld()
         {
             World world = new World();
-            world.AddLocation(0, 0, "Rogue Encampment");
+            world.AddLocation(0, 0, "Rogue Encampment", Messages.RogueEncampment["RogueEncampmentEntry"], NpcFactory.ActOneNpcs());
+            
 
             return world;
         }

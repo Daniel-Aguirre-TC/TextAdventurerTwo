@@ -9,14 +9,8 @@ namespace TextAdventureTwo
         static void Main(string[] args)
         {
 
-
-            Console.SetWindowSize(150, 80);
-            ConsoleUI.DrawPage();
-            
-            //GameManager.StartGame();
-
-
-
+            Console.SetWindowSize(150, 80);           
+            GameManager.StartGame();
 
         }
 
