@@ -14,6 +14,7 @@ namespace TextAdventureTwo.GameWorld
         public string[] EntryMessage { get; set; }
         public List<string> Options { get; set; }
         public List<Npc> Npcs { get; set; }
+        public List<Enemy> Enemies { get; set; }
 
         public void TalkToLocals()
         {

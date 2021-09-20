@@ -52,9 +52,41 @@ namespace TextAdventureTwo.GameWorld
         }
 
 
+        /// <summary>
+        /// Create a new location and store it in World.Locations.
+        /// </summary>
+        /// <param name="xCoordinate"></param>
+        /// <param name="yCoordinate"></param>
+        /// <param name="name"></param>
+        public void AddLocation(int xCoordinate, int yCoordinate, string name, string[] options, string[] entryMessage, List<Enemy> enemies)
+        {
+            Location location = new Location
+            {
+                XCoord = xCoordinate,
+                YCoord = yCoordinate,
+                Name = name,
+                Options = options.ToList(),
+                EntryMessage = entryMessage,
+                Enemies = enemies
+            };
+            Locations.Add(location);
+        }
 
 
-        public Location LocationAt(int xCoordinate, int yCoordinate)
+        public Location FindLocation(string name)
+        {
+            foreach (var location in Locations)
+            {
+                if (location.Name == name)
+                {
+                    return location;
+                }
+            }
+            return null;
+        }
+
+
+        public Location FindLocation(int xCoordinate, int yCoordinate)
         {
 
             foreach (Location location in Locations)

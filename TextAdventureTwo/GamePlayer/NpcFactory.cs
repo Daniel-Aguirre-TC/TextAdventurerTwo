@@ -8,12 +8,21 @@ namespace TextAdventureTwo.GamePlayer
     public static class NpcFactory
     {
         static List<Npc> AllNpcs { get; set; }
+        static List<Enemy> AllEnemies { get; set; }
 
-        static Dictionary<string, string[]> WarrivDialog {get; set;}
+        #region Npc Dialogs
+        static Dictionary<string, string[]> WarrivDialog { get; set; }
+
+
+        #endregion
+        #region Enemy Dialogs
+        static Dictionary<string, string[]> FallenOneDialog { get; set; }
+
+        #endregion
 
         static NpcFactory()
         {
-
+            #region Npc Dialog Creation
             WarrivDialog = new Dictionary<string, string[]>()
             {
                 { "Greeting", new string[]{
@@ -47,29 +56,47 @@ namespace TextAdventureTwo.GamePlayer
                 } }
 
             };
+            #endregion
+
+            #region Enemy Dialog Creation
+
+            FallenOneDialog = new Dictionary<string, string[]>()
+            {
+                { "Encountered", new string[]
+                {
+
+                    "                                                                    ",
+                    "      You encounter a Fallen One! Although this red devil appears to",
+                    "be skittish, you know better than to underestimate it. You ready    ",
+                    "yourself for battle while the demon shrieks and yells gibberish.    "
+                } },
+
+                { "Attack", new string[]{
+
+                    "                                                                    ",
+                    "      The fallen one rushes at you out of nowhere, swinging its     ",
+                    "weapon randomly. After slashing at you the Fallen One shrieks and   ",
+                    "runs away."
+
+                } },
+
+            };
+            #endregion
+
+            #region Npc Creation
             AllNpcs = new List<Npc>
             {
                 new Npc("Warriv", WarrivDialog )
                 //TODO: New Enemy : Npc
                 
             };
-        }
+            #endregion
 
-
-        public static List<Npc> ActOneNpcs()
-        {
-            return new List<Npc>()
+            AllEnemies = new List<Enemy>
             {
-                FindNpc("Warriv")
+                new Enemy ("Fallen One", FallenOneDialog, 25, 5, 0, 4)
             };
-        }
 
-        public static List<Npc> BloodMoorMobs()
-        {
-            return new List<Npc>()
-            {
-                FindNpc("Warriv")
-            };
         }
 
         public static Npc FindNpc(string npcName)
@@ -79,12 +106,56 @@ namespace TextAdventureTwo.GamePlayer
                 if (npc.Name == npcName)
                 {
                     return npc;
-                }    
+                }
             }
             return null;
         }
 
-        
+        public static Enemy FindEnemy(string enemyName)
+        {
+            foreach (var enemy in AllEnemies)
+            {
+                if (enemy.Name == enemyName)
+                {
+                    return enemy;
+                }
+            }
+            return null;
+        }
 
+
+        #region Npc Collections
+        public static List<Npc> ActOneNpcs()
+        {
+            return new List<Npc>()
+            {
+                FindNpc("Warriv")
+            };
+        }
+
+        #endregion
+
+        #region Enemy Collections
+        public static List<Enemy> BloodMoorMobs()
+        {
+            //TODO: Change this to be monsters
+            return new List<Enemy>()
+            {
+                FindEnemy("Fallen One")
+            };
+        }
+
+        public static List<Npc> DenOfEvilMobs()
+        {
+            //TODO: Change this to be monsters
+            return new List<Npc>()
+            {
+                FindEnemy("Fallen One")
+            };
+
+            #endregion
+
+        }
     }
+
 }

@@ -16,6 +16,7 @@ namespace TextAdventureTwo
         static Player User { get; set; }
         static World CurrentWorld { get; set; }
         static Location CurrentLocation { get; set; }
+        static Location ReturnToLocation { get; set; }
 
         static List<string> Messages { get; set; }
 
@@ -29,7 +30,7 @@ namespace TextAdventureTwo
 
         public static void MoveToLocation(int xCoord, int yCoord)
         {
-            CurrentLocation = CurrentWorld.LocationAt(xCoord, yCoord);
+            CurrentLocation = CurrentWorld.FindLocation(xCoord, yCoord);
             User.Current = $"Current Location: {CurrentLocation.Name}";
             MessageController.ClearMessages();
             if (CurrentLocation.EntryMessage[0] != "" && CurrentLocation.EntryMessage != null)
@@ -89,23 +90,30 @@ namespace TextAdventureTwo
                 case "Talk to Locals":
                     CurrentLocation.TalkToLocals();
                     break;
+                
+                    // start a conversation with an npc
                 case string word when word.StartsWith("Approach"):
                     var npcApproached = NpcFactory.FindNpc(word.Replace("Approach ", ""));
-                    User.Current = $"Talking to {npcApproached.Name}";
+                    User.Current = $"You Are Currently Talking To {npcApproached.Name}";
                     ConsoleUI.ClearOptions();
                     ConsoleUI.AddOption(npcApproached.ApproachNpc());
                     break;
+                
+                    // select a conversation topic with npc you're currently talking to
                 case string word when word.StartsWith("Discuss "):
-                    var npcTalkingTo = NpcFactory.FindNpc(User.Current.Replace("Talking to ", ""));
+                    var npcTalkingTo = NpcFactory.FindNpc(User.Current.Replace("You Are Currently Talking To ", ""));
                     MessageController.ClearMessages();
                     MessageController.AddMessage(npcTalkingTo.PullDialog(word.Replace("Discuss ", "")));
                     break;
+                
                 case "Return to Town":
                     MoveToLocation(CurrentLocation.XCoord, CurrentLocation.YCoord);
                     break;
+                
                 case "Go to Stash":
                     MessageController.AddMessage("                     Stash is not yet available                     ");
                     break;
+                
                 case string word when word.StartsWith("Travel "):
                     switch (word.Replace("Travel ", ""))
                     {
@@ -125,19 +133,14 @@ namespace TextAdventureTwo
                             break;
                     }
                     break;
+                
                 case "Use Waypoint":
                     //TODO: make AddMessage handle formatting messages to the right length.
                     MessageController.AddMessage("                  You don't have any waypoints yet                  ");
                     break;
+                
                 case string word when word.StartsWith("Explore "):
-                    Explorer.Explore(CurrentLocation);
-
-                    //TODO: use currentLocation name to call an explore method that will do something random dependant upon the
-                    // name of the currentLocation we are at. Blood Moore for example will randomly either locate the den allowing
-                    // it to be added to the location options list, find cold plains which will also add it to the option list, or
-                    // fight a monster which will pick a random monster from the ACtOneMobs list and start fight method that will
-                    // have a loop for battle mechanics
-
+                    Explorer.Explore(CurrentLocation, User);
                     break;
 
                 default:
@@ -146,7 +149,7 @@ namespace TextAdventureTwo
         }
 
 
-        static string GetInput()
+        public static string GetInput()
         {
             switch (Console.ReadKey().Key)
             {
@@ -157,6 +160,7 @@ namespace TextAdventureTwo
                 case ConsoleKey.Enter:
                     return "enter";
                 case ConsoleKey.H:
+                    //TODO: use health potion/mana potion
                     return "health";
                 case ConsoleKey.M:
                     return "mana";

@@ -19,6 +19,7 @@ namespace TextAdventureTwo.GamePlayer
         public int Level { get; set; }
         public int Experience { get; set; }
         #endregion
+
         #region Stats
         public int MaxHealth { get; set; }
         public int CurrentHealth { get; set; }
@@ -28,6 +29,11 @@ namespace TextAdventureTwo.GamePlayer
         public int Dexterity { get; set; }
         public int Vitality { get; set; }
         public int Energy { get; set; }
+
+        // attack related
+        public int ChanceToHit { get; set; }
+        public bool IsDefending { get; set; }
+
         #endregion
         #region Resistances
         public int FireResist { get; set; }
@@ -45,6 +51,8 @@ namespace TextAdventureTwo.GamePlayer
             ColdResist = 0;
             LightResist = 0;
             PoisonResist = 0;
+            ChanceToHit = 80;
+            IsDefending = false;
             // ask player to select class then assign
             SetClass();
             // ask play for their name

@@ -293,9 +293,9 @@ namespace TextAdventureTwo
 
         };
 
-        public static Dictionary<string, string[]> RogueEncampment = new Dictionary<string, string[]>
+        public static Dictionary<string, string[]> EntryMessage = new Dictionary<string, string[]>
         {
-            {"RogueEncampmentEntry", new string[]{
+            {"RogueEncampment", new string[]{
 
                 "      You find yourself on the edges of Blood Moore, in the Rogue   ",
                 "Encampment. A resting place for the survivors from the attack on the",
@@ -309,20 +309,28 @@ namespace TextAdventureTwo
 
             } },
 
-        };
-
-
-
-        public static Dictionary<string, string[]> BloodMoor = new Dictionary<string, string[]>
-        {
-            {"BloodMoorEntry", new string[]{
+            {"BloodMoor", new string[]{
                 "      As you enter the Blood Moor you think to yourself, \"I shall   ",
                 "purge this land of the shadow. Beware, evil foul demons and beasts  ",
                 "who oppose me. For you will never see me coming.\"                   ",
 
             } },
 
+            {"DenOfEvil", new string[]{
+                "                                                                    ",
+                "      As you enter the Den of Evil you hear foul creatures about.   ",
+                "You think to yourself that the darkness here provides a perfect     ",
+                "hiding place for the evil that dwells within this cave. You sense   ",
+                "death from the unknown depths of the cave, and can feel that there  ",
+                "are many more foes here than you originally anticipated. You prepare",
+                "to cleanse the evil from this cave, as you wonder whether it will   ",
+                "have any lasting impact, or if the dead will rise again and continue",
+                "to terrorize the survivors back at the Rogue Encampment.            "
+            } }
+
+
         };
+
 
 
     }
