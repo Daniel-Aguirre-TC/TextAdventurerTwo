@@ -20,6 +20,7 @@ namespace TextAdventureTwo.GamePlayer
 
         #endregion
 
+        // NpcFactory Static Constructor
         static NpcFactory()
         {
             #region Npc Dialog Creation
@@ -138,7 +139,6 @@ namespace TextAdventureTwo.GamePlayer
         #region Enemy Collections
         public static List<Enemy> BloodMoorMobs()
         {
-            //TODO: Change this to be monsters
             return new List<Enemy>()
             {
                 FindEnemy("Fallen One")
@@ -147,7 +147,6 @@ namespace TextAdventureTwo.GamePlayer
 
         public static List<Npc> DenOfEvilMobs()
         {
-            //TODO: Change this to be monsters
             return new List<Npc>()
             {
                 FindEnemy("Fallen One")

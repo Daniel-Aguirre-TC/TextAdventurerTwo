@@ -44,10 +44,12 @@ namespace TextAdventureTwo.GameMessages
 
         public static void AddMessage(string[] newMessage)
         {
+            
             newMessage.ToList().ForEach(AddMessage);
         }
         public static void AddMessage(string newMessage)
         {
+            //TODO:  This is where we can format the message to the right length.
             if (DisplayedMessages.Count >= 15)
             {
                 DisplayedMessages.RemoveAt(0);

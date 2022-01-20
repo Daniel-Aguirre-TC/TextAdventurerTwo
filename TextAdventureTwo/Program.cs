@@ -8,12 +8,9 @@ namespace TextAdventureTwo
     {
         static void Main(string[] args)
         {
-
-            Console.SetWindowSize(150, 80);           
+            Console.SetWindowSize(150, 80);                               
             GameManager.StartGame();
-
         }
-
 
     }
 }

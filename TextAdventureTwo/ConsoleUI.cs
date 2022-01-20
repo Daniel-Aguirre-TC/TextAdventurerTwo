@@ -187,11 +187,11 @@ namespace TextAdventureTwo
 
             // replace max/current health on index 12
             var healthField = new Regex(@".* (#+).*").Match(messages[12]).Groups.Values.Select(x => x.ToString()).ToArray();
-            messages[12] = healthField[0].Replace(healthField[1], $"{player.MaxHealth}/{player.CurrentHealth}".PadRight(healthField[1].Length));
+            messages[12] = healthField[0].Replace(healthField[1], $"{player.CurrentHealth} / {player.MaxHealth}".PadRight(healthField[1].Length));
 
             // replace max/current mana on index 14
             var manaField = new Regex(@".* (#+).*").Match(messages[14]).Groups.Values.Select(x => x.ToString()).ToArray();
-            messages[14] = manaField[0].Replace(manaField[1], $"{player.MaxMana}/{player.CurrentMana}".PadRight(manaField[1].Length));
+            messages[14] = manaField[0].Replace(manaField[1], $"{player.CurrentMana} / {player.MaxMana}".PadRight(manaField[1].Length));
 
             // replace str/dex on index 16
             var strDexField = new Regex(@".* (#+).* (&+).*").Match(messages[16]).Groups.Values.Select(x => x.ToString()).ToArray();

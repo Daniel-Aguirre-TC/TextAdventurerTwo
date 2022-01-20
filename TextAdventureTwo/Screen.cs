@@ -171,12 +171,14 @@ namespace TextAdventureTwo
         /// <returns></returns>
         public static int ReprintWithOptionList(string[] message)
         {
+            // maxNumber is based on however many lines in the string start with " #) "
             int maxNumber = message.Where(x => new Regex(@"^[\d]+\)").IsMatch(x)).Count();
             char input = ' ';
             bool firstLoop = true;
             int result = 0;
             do
             {
+                //print the message to the screen
                 ReprintWith(message);
                 // if not the first loop, display invalid entry message.
                 result = ValidateOptionEntry(ref input, ref firstLoop, ref maxNumber);
@@ -299,6 +301,7 @@ namespace TextAdventureTwo
         /// <returns></returns>
         static int ValidateOptionEntry(ref char input, ref bool firstLoop, ref int maxNumber)
         {
+
             var result = 0;
             if (!firstLoop)
             {
@@ -417,4 +420,5 @@ namespace TextAdventureTwo
 
 
     }
+
 }
